@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Christmas Surprise 🎄</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #b31217, #e52d27);
+    color: white;
+    text-align: center;
+    padding: 40px;
+  }
+  .card {
+    background: rgba(0,0,0,0.35);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 500px;
+    margin: auto;
+  }
+  h1 { font-size: 32px; }
+  p { font-size: 18px; }
+</style>
+</head>
+
+<body>
+<div class="card" id="content">
+  <h1>🎅 Surprise Locked</h1>
+  <p>This Christmas message will open on</p>
+  <h2>🎄 25 December 2025 🎄</h2>
+  <p id="timer"></p>
+</div>
+
+<script>
+  const unlockTime = new Date("2025-12-25T00:00:00+05:30").getTime();
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const diff = unlockTime - now;
+
+    if (diff <= 0) {
+      document.getElementById("content").innerHTML = `
+        <h1>🎄 Merry Christmas Kavita Tai 🎄</h1>
+        <p>
+          May this Christmas bring you<br>
+          happiness, peace, good health,<br>
+          and lots of smiles ✨<br><br>
+          Warm wishes ❤️
+        </p>`;
+    } else {
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      document.getElementById("timer").innerText =
+        `⏳ ${days} days ${hours} hours ${minutes} minutes remaining`;
+    }
+  }, 1000);
+</script>
+</body>
+</html>
